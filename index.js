@@ -20,19 +20,33 @@
 const { spawn } = require("child_process");
 const log = require("./logger/log.js");
 
-function startProject() {
-	const child = spawn("node", ["Goat.js"], {
-		cwd: __dirname,
-		stdio: "inherit",
-		shell: true
-	});
+// 👇 Added for Render: Start web server
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-	child.on("close", (code) => {
-		if (code == 2) {
-			log.info("Restarting Project...");
-			startProject();
-		}
-	});
+app.get("/", (req, res) => {
+  res.send("✅ GoatBot V2 is live and running on Render!");
+});
+
+app.listen(PORT, () => {
+  console.log(`✅ Web server is running on port ${PORT}`);
+});
+
+// 👇 Bot launcher (original code)
+function startProject() {
+  const child = spawn("node", ["Goat.js"], {
+    cwd: __dirname,
+    stdio: "inherit",
+    shell: true
+  });
+
+  child.on("close", (code) => {
+    if (code == 2) {
+      log.info("Restarting Project...");
+      startProject();
+    }
+  });
 }
 
 startProject();
