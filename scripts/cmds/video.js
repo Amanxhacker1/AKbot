@@ -6,8 +6,8 @@ const path = require("path");
 module.exports = {
   config: {
     name: "video",
-    aliases: ["mp4"],
-    version: "2.2",
+    aliases: ["ytvideo"],
+    version: "2.3",
     author: "Raj",
     countDown: 5,
     role: 0,
@@ -27,21 +27,12 @@ module.exports = {
       if (!top5.length) return message.reply("⚠️ No results found.");
 
       let replyText = `🎬 Top 5 results for: ${query}\n\n`;
-      let attachments = [];
-
-      for (let i = 0; i < top5.length; i++) {
-        const v = top5[i];
+      top5.forEach((v, i) => {
         replyText += `${i + 1}. ${v.title}\n⏱ ${v.timestamp} | 👁 ${v.views.toLocaleString()}\n\n`;
-        const stream = await global.utils.getStreamFromURL(v.thumbnail);
-        attachments.push(stream);
-      }
-
+      });
       replyText += "💬 Reply with 1-5 to download that video.";
 
-      message.reply({
-        body: replyText,
-        attachment: attachments
-      }, (err, info) => {
+      message.reply(replyText, (err, info) => {
         global.GoatBot.onReply.set(info.messageID, {
           commandName: module.exports.config.name,
           messageID: info.messageID,
@@ -71,8 +62,9 @@ module.exports = {
     const thumbnail = selected.thumbnail;
     const filePath = path.join(__dirname, "cache", `${Date.now()}.mp4`);
 
+    // Reply with thumbnail before downloading
     message.reply({
-      body: `📥 Downloading:\n🎬 ${videoTitle}\n🔗 ${videoUrl}`,
+      body: `📥 Downloading:\n🎬 *${videoTitle}*\n🔗 ${videoUrl}`,
       attachment: await global.utils.getStreamFromURL(thumbnail)
     });
 
