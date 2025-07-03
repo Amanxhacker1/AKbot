@@ -1,3 +1,4 @@
+const { GoatWrapper } = require("fca-liane-utils");
 const axios = require("axios");
 const fs = require("fs-extra");
 
@@ -6,7 +7,7 @@ module.exports = {
     name: "logo",
     version: "1.0",
     aliases: [],
-    author: "Mirrykal (Converted for GoatBot)",
+    author: "Raj",
     countDown: 5,
     role: 0,
     shortDescription: "Generate logos",
@@ -35,7 +36,11 @@ module.exports = {
         "12: Typography Status",
         "13: Dragon Ball",
         "14: Castle Pop",
-        "15: Frozen Christmas"
+        "15: Frozen Christmas",
+        "16: Foggy Glass",
+        "17: Neon Light",
+        "18: Colour Paint",
+        "19: Logo Maker"
       ];
       return message.reply(`Available Logo Types:\n\n${logoTypes.join("\n")}`);
     }
@@ -63,7 +68,12 @@ module.exports = {
       "12": "https://api-pink-venom.vercel.app/api/logo?url=https://en.ephoto360.com/create-typography-status-online-with-impressive-leaves-357.html&name=",
       "13": "https://api-pink-venom.vercel.app/api/logo?url=https://en.ephoto360.com/create-dragon-ball-style-text-effects-online-809.html&name=",
       "14": "https://api-pink-venom.vercel.app/api/logo?url=https://en.ephoto360.com/create-a-3d-castle-pop-out-mobile-photo-effect-786.html&name=",
-      "15": "https://api-pink-venom.vercel.app/api/logo?url=https://en.ephoto360.com/create-a-frozen-christmas-text-effect-online-792.html&name="
+      "15": "https://api-pink-venom.vercel.app/api/logo?url=https://en.ephoto360.com/create-a-frozen-christmas-text-effect-online-792.html&name=",
+      "16": "https://api-pink-venom.vercel.app/api/logo?url=https://en.ephoto360.com/handwritten-text-on-foggy-glass-online-680.html&name=",
+      "17": "https://api-pink-venom.vercel.app/api/logo?url=https://en.ephoto360.com/create-colorful-neon-light-text-effects-online-797.html&name=",
+      "18": "https://api-pink-venom.vercel.app/api/logo?url=https://en.ephoto360.com/create-3d-colorful-paint-text-effect-online-801.html&name=",
+      "19": "https://api-pink-venom.vercel.app/api/logo?url=https://en.ephoto360.com/online-blackpink-style-logo-maker-effect-711.html&name="
+      
     };
 
     if (!logoApis[type]) {
@@ -82,18 +92,4 @@ module.exports = {
       const downloadUrl = response.data.result.download_url;
       const imageResponse = await axios.get(downloadUrl, { responseType: "arraybuffer" });
 
-      fs.writeFileSync(pathImg, Buffer.from(imageResponse.data));
-
-      return message.reply(
-        {
-          body: "Here is your logo:",
-          attachment: fs.createReadStream(pathImg),
-        },
-        () => fs.unlinkSync(pathImg) // Delete the file after sending
-      );
-    } catch (error) {
-      console.error(error);
-      return message.reply("An error occurred while generating your logo. Please try again later.");
-    }
-  }
-};
+     
