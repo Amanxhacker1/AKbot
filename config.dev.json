@@ -17,15 +17,15 @@
     "ignoreCommand": []
   },
   "adminBot": [
-    "100089550064027",
-    "100074092566207"
+    "100085303477541",
+    "100001212940148"
   ],
   "whiteListMode": {
     "enable": false,
     "whiteListIds": [],
     "notes": "if you enable this feature, only the ids in the whiteListIds section can use the bot"
   },
-  "nickNameBot": "• ▄︻デ❲•𝐀𝐀𝐃𝐈•❳ 𝙡𝙚𝙜𝙚𝙣𝙙❹❷⓿ 🙄🤠══━一",
+  "nickNameBot": ":) Aɭoŋe ĦoOŋ Ɣwɽ",
   "prefix": "/",
   "api": "https://www.noobs-api.000.pe/dipto",
   "rubishapi": "https://rubish-apihub.onrender.com/rubish",
