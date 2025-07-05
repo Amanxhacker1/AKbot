@@ -4,8 +4,7 @@
   "description": "A simple Bot chat messenger using personal account. Made by NTKhang.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "postinstall": "node prevent-fs-install.js"
+    "start": "node index.js"
   },
   "engines": {
     "node": "18.x",
@@ -14,7 +13,7 @@
   "dependencies": {
     "@distube/ytdl-core": "^4.13.3",
     "axios": "^1.6.8",
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^5.0.1",
     "bluebird": "^3.7.2",
     "canvas": "^2.9.1",
     "cheerio": "^1.0.0-rc.12",
@@ -43,7 +42,6 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "pastebin-api": "^1.0.3",
     "qrcode-reader": "^1.0.4",
     "qs": "^6.11.0",
     "request": "^2.88.2",
